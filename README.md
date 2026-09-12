@@ -41,13 +41,26 @@ sql_assignments/
 │
 └── README.md
 
+---
+
 ## Coursework & Modules
 
-| Assignment | Topic / Textbook Chapter | Database Schema | Key Concepts & Techniques | Status |
-| :--- | :--- | :--- | :--- | :---: |
-| **Assignment 02** | How to Retrieve Data from a Single Table (*Murach* Ch. 3) | `imdb` (`mytable`) | Column expressions, arithmetic operations, `WHERE`, `IN`, `BETWEEN`, `REGEXP`, scalar functions (`ROUND`, `LEFT`, `CONCAT`), `IS NULL`, `ORDER BY` | Completed |
-| **Assignment 03** | How to Retrieve Data from Two or More Tables (*Murach* Ch. 4) | Oracle Tutorial (`OT`) | `INNER JOIN`, `LEFT JOIN`, anti-joins (`WHERE ... IS NULL`), multi-table traversal, table aliasing, `USING` vs `ON`, `DISTINCT`, integrity constraints | Completed |
-| **Assignment 04** | *Upcoming Assignment* | *TBD* | *Summary queries, aggregate functions (`GROUP BY`, `HAVING`), subqueries* | In Progress |
+* **Assignment 02: Retrieve Data from a Single Table (Murach Ch. 3)**
+  * **Schema:** `imdb` (`mytable`)
+  * **Key Concepts:** Column expressions, arithmetic operations, `WHERE`, `IN`, `BETWEEN`, `REGEXP`, scalar functions (`ROUND`, `LEFT`, `CONCAT`), `IS NULL`, `ORDER BY`.
+  * **Status:** Completed
+
+* **Assignment 03: Retrieve Data from Two or More Tables (Murach Ch. 4)**
+  * **Schema:** Oracle Tutorial (`OT`)
+  * **Key Concepts:** `INNER JOIN`, `LEFT JOIN`, anti-joins (`WHERE ... IS NULL`), multi-table traversal, table aliasing, `USING` vs `ON`, `DISTINCT`, foreign key integrity.
+  * **Status:** Completed
+
+* **Assignment 04: Upcoming Assignment**
+  * **Schema:** TBD
+  * **Key Concepts:** Summary queries, aggregate functions (`GROUP BY`, `HAVING`), subqueries.
+  * **Status:** In Progress
+
+---
 
 ## Execution Guide
 
