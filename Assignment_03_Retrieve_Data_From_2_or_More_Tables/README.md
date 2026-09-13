@@ -27,6 +27,8 @@ Assignment_03_Retrieve_Data_From_2_or_More_Tables/
 │   └── 03_Worksheet_Retrieving_Data2.sql        # SQL solutions for tasks 3–10
 └── README.md
 ```
+---
+
 ## Tasks Summary
 
 * **Task 3: List all countries and their regions**  
@@ -54,3 +56,12 @@ Assignment_03_Retrieve_Data_From_2_or_More_Tables/
 * **Task 10: Products without orders**  
   Anti-join between `products` and `order_items` to identify unpurchased items (32 rows returned).
 
+---
+
+## How to Run
+
+### Using MySQL Workbench (GUI)
+1. Open **MySQL Workbench** and establish a connection to your local MySQL server.
+2. Open and execute `scripts/01_create_Oracle_Tutorial_database.sql` to initialize the database schema.
+3. Open and execute `scripts/02_populate_Oracle_Tutorial_tables.sql` to populate sample data across all tables.
+4. Open `scripts/03_Worksheet_Retrieving_Data2.sql` and run individual task queries sequentially to inspect the result sets.
