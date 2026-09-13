@@ -26,7 +26,7 @@ Assignment_03_Retrieve_Data_From_2_or_More_Tables/
 │   ├── 02_populate_Oracle_Tutorial_tables.sql   # DML data population script
 │   └── 03_Worksheet_Retrieving_Data2.sql        # SQL solutions for tasks 3–10
 └── README.md
-
+```
 ## Tasks Summary
 
 * **Task 3: List all countries and their regions**  
