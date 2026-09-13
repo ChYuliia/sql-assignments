@@ -40,7 +40,7 @@ sql_assignments/
 │   └── README.md
 │
 └── README.md
-
+```
 ---
 
 ## Coursework & Modules
