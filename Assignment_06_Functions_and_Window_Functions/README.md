@@ -1,62 +1,62 @@
-# Assignment 04: DML Statements and Summary Queries
+# Assignment 06: Functions, Conditional Expressions, and Window Functions
 
-This assignment demonstrates data modification language (DML) operations, summary queries, aggregate functions, grouping, filtering with HAVING, and aggregate window functions using MySQL Workbench and Murach's MySQL concepts.
+This assignment demonstrates advanced scalar functions, string manipulation, numeric formatting, date and time calculations, control flow logic (`IF`, `CASE`), and ranking window functions (`RANK`, `DENSE_RANK`) using MySQL Workbench and Murach's MySQL concepts.
 
 ## Database Overview
 
 * **RDBMS / Tool:** MySQL / MySQL Workbench
-* **Sample Schema:** `Sinclair_db` (custom student table) & Oracle Tutorial (`OT`) Sample Database
-* **Core Tables:** `Sinclair`, `Sinclair_copy`, `inventories`, `warehouses`, `employees`, `products`, `product_categories`
-
-The database diagram is located at `docs/Oracle Tutorial ERD.png`.
-
-![ERD](docs/Oracle%20Tutorial%20ERD.png)
+* **Sample Schema:** Oracle Tutorial (`OT`) Sample Database & core enterprise tables (`employees`, `customers`, `products`, `orders`, `order_items`, `locations`)
+* **Core Tables:** `order_items`, `employees`, `customers`, `products`, `orders`, `locations`
 
 ---
 
 ## Repository Structure
 
 ```text
-Assignment_04_DML_and_Summary_Queries/
+Assignment_06_Functions_and_Window_Functions/
 ├── docs/
-│   ├── DML_Statements_Worksheet.pdf          # Submission report with queries and result grids
-│   └── Oracle Tutorial ERD.png               # Relational schema diagram
+│   └── Functions_Worksheet.pdf               # Submission report with queries and result grids
+│   └── Oracle Tutorial ERD.png               # Relational schema
 ├── scripts/
-│   ├── 01_create_Sinclair_db.sql             # DDL & DML script for custom Sinclair table
-│   └── 02_Worksheet_DML_Statements.sql       # SQL solutions for DML and summary tasks
+│   └── 01_Worksheet_Functions.sql            # SQL solutions for functions, conditional expressions, and window functions
 └── README.md
 ```
 ---
 
 # Tasks Summary
 
-* **Task 1 & 2: Table Creation and Data Population (Sinclair_db)**  
-  Creates a custom Sinclair table with specified columns and populates it with student courses and additional required classes.
+* **Task 1: Order Item Total Calculation & Formatting**  
+  Calculates the total cost for each order item (`quantity * unit_price`) and formats the resulting monetary value to two decimal places using the `FORMAT()` function.
 
-* **Task 3: Safe Updates and Data Modification**  
-  Disables safe updates (sql_safe_updates = 0) and updates records to change the text "REMOTE" to "virtual" for class types and locations.
+* **Task 2: Employee Name and Title Concatenation**  
+  Concatenates employee first and last names separated by a comma, followed by their job title using `CONCAT_WS()`.
 
-* **Task 4: Specific Record Update**  
-  Updates credit hours to 1.5 specifically for the RES 1301 class.
+* **Task 3: Dynamic Employee Login Generation**  
+  Generates a standardized uppercase login name by combining the first letter of the employee's first name, their last name, and a randomized two-digit number (`LEFT()`, `CONCAT()`, `LPAD()`, `RAND()`, `UPPER()`).
 
-* **Task 5: Table Duplication**  
-  Creates a backup/copy table named Sinclair_copy using the CREATE TABLE ... AS SELECT statement.
+* **Task 4: Longest Customer Address Analysis**  
+  Finds the maximum character length among all customer street addresses in the `customers` table (`MAX(LENGTH())`).
 
-* **Task 6: Inventory Summaries (Oracle Tutorial DB)**  
-  * **Part A:** Calculates the total sum of item quantities on hand in the inventories table.
-  * **Part B:** Groups and aggregates inventory quantities by each warehouse ID.
+* **Task 5: Comma Position in Customer Addresses (Names Starting with 'O')**  
+  Locates the position of the first comma in the address column specifically for companies whose name starts with the letter 'O' (`LOCATE()`, `REGEXP_LIKE()`).
 
-* **Task 7: Management Hierarchy Analysis**  
-  Identifies records with NULL in the manager_id column of the employees table and explains the organizational hierarchy structure (the company president).
+* **Task 6: Product Profit Calculation & Rounding**  
+  Calculates product profit by subtracting standard cost from list price and rounds the result to zero decimal places (`ROUND()`).
 
-* **Task 8: Global Product Price Statistics**  
-  Calculates the highest list price, lowest list price, and overall average list price across all products in a single statement.
+* **Task 7: Birthdate Day of the Week Extraction**  
+  Converts a date string into a date format and extracts the corresponding day of the week (`DAYNAME()`, `STR_TO_DATE()`).
 
-* **Task 9: Categorized Product Statistics**  
-  Groups the price statistics (MAX, MIN, AVG) by product category name via table joins.
+* **Task 8: Conditional Order Action Assignment (`CASE`)**  
+  Uses the `CASE` control flow function to assign operational action items based on order statuses (e.g., "send invoice" for shipped, "OK" for pending, "follow up" for canceled).
 
-* **Task 10: Advanced Summary & Window Functions**  
-  Extends category-level aggregates by incorporating advanced window functions (OVER(), ANY_VALUE(), nested AVG(), or named windows) to display global benchmarks and compare category performance against overall averages.
+* **Task 9: Location Classification (`IF`)**  
+  Uses the `IF` conditional statement to add a status column classifying location records as 'Domestic' (for US) or 'International' (for all other countries).
+
+* **Task 10: Employee Employment Tenure Calculation**  
+  Calculates the length of employment in full years from each employee's hire date to the current date (`YEAR()`, `CURRENT_DATE()`).
+
+* **Task 11: Customer Credit Limit Ranking (`RANK` & `DENSE_RANK`)**  
+  Applies advanced window functions (`RANK()` and `DENSE_RANK()`) ordered by customer credit limit across all customer records.
 
 ---
 
@@ -64,6 +64,6 @@ Assignment_04_DML_and_Summary_Queries/
 
 ### Using MySQL Workbench (GUI)
 1. Open **MySQL Workbench** and establish a connection to your local MySQL server.
-2. Open and execute `scripts/01_create_Sinclair_db.sql` to initialize the custom `Sinclair_db` database, create the table, and populate initial data.
-3. Open `scripts/02_Worksheet_DML_Statements.sql`, ensure you switch to the required database contexts (`USE Sinclair_db;` then `USE OT;`), and execute scripts sequentially. Ensure safe updates settings are properly handled around `UPDATE` statements.
+2. Ensure the Oracle Tutorial (`OT`) database—containing core tables such as `order_items`, `employees`, `customers`, `products`, `orders`, and `locations`—is installed and active on your local instance.
+3. Open and execute `scripts/01_Worksheet_Functions.sql` sequentially. Make sure the correct database context (`USE OT;`) is set before running queries involving scalar functions, string manipulation, numeric formatting, conditional logic (`IF`, `CASE`), date calculations, and ranking window functions (`RANK`, `DENSE_RANK`).
 4. Verify your live results against the compiled report and execution screenshots available in the `docs/` folder.
