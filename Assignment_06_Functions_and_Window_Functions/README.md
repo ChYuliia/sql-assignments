@@ -10,6 +10,12 @@ This assignment demonstrates advanced scalar functions, string manipulation, num
 
 ---
 
+The database diagram is located at `docs/Oracle Tutorial ERD.png`.
+
+![ERD](docs/Oracle%20Tutorial%20ERD.png)
+
+---
+
 ## Repository Structure
 
 ```text
