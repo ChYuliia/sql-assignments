@@ -48,6 +48,13 @@ sql_assignments/
 │   │   └── 02_Worksheet_DML_Statements.sql
 │   └── README.md
 │
+├── Assignment_06_Functions_and_Window_Functions/
+│   ├── docs/
+│   │   └── Functions_Worksheet.pdf
+│   │   └── Oracle Tutorial ERD.png
+│   ├── scripts/
+│   │   └── 01_Worksheet_Functions.sql
+│   └── README.md
 └── README.md
 ```
 ---
@@ -69,6 +76,10 @@ sql_assignments/
   * **Key Concepts:** DML operations (`INSERT`, `UPDATE`, `DELETE`, safe updates configuration), summary queries, aggregate functions (`SUM`, `AVG`, `MAX`, `MIN`, `COUNT`), `GROUP BY`, `HAVING` vs `WHERE`, aggregate window functions (`OVER`, `PARTITION BY`), frames (`ROWS`/`RANGE`), and named windows.
   * **Status:** Completed
 
+* **Assignment 06: Functions, Conditional Expressions, and Window Functions (Murach Ch. 9)**
+  * **Schema:** Oracle Tutorial (`OT`), `employees`, `customers`, `products`, `orders`
+  * **Key Concepts:** String functions (`CONCAT`, `LEFT`, `LOCATE`), numeric formatting and rounding (`FORMAT`, `ROUND`), date/time functions (`DAYNAME`, `YEAR`), control flow logic (`IF`, `CASE`), and ranking window functions (`RANK`, `DENSE_RANK` with `OVER`).
+  * **Status:** Completed
 ---
 
 # Execution Guide
@@ -82,8 +93,9 @@ Each assignment directory in this repository is completely self-contained with i
 ### 1. Select an Assignment Directory
 Navigate into the desired module directory (e.g.,  
 `Assignment_02_Retrieve_Data_From_a_Single_Table/`,  
-`Assignment_03_Retrieve_Data_From_2_or_More_Tables/`, or  
-`Assignment_04_DML_and_Summary_Queries/`).
+`Assignment_03_Retrieve_Data_From_2_or_More_Tables/`,   
+`Assignment_04_DML_and_Summary_Queries/`, or  
+`Assignment_06_Functions_and_Window_Functions/`).
 
 ### 2. Initialize & Populate the Database
 Open **MySQL Workbench** and execute the setup scripts located in the `scripts/` subfolder in numerical order:
