@@ -56,6 +56,15 @@ sql_assignments/
 │   │   └── 01_Worksheet_Functions.sql
 │   └── README.md
 └── README.md
+│
+├── Assignment_07_DDL_Statements/          
+│   ├── docs/
+│   │   ├── DDL_Statements_Worksheet.docx  
+│   │   └── food_tracking_erd.png          
+│   ├── scripts/
+│   │   ├── 01_create_and_load_food_tracking_db.sql  
+│   │   └── 02_worksheet_queries.sql                 
+│   └── README.md                          
 ```
 ---
 
@@ -80,6 +89,11 @@ sql_assignments/
   * **Schema:** Oracle Tutorial (`OT`), `employees`, `customers`, `products`, `orders`
   * **Key Concepts:** String functions (`CONCAT`, `LEFT`, `LOCATE`), numeric formatting and rounding (`FORMAT`, `ROUND`), date/time functions (`DAYNAME`, `YEAR`), control flow logic (`IF`, `CASE`), and ranking window functions (`RANK`, `DENSE_RANK` with `OVER`).
   * **Status:** Completed
+    
+* **Assignment 07: DDL Statements, Constraints, and Table Modifications (Murach Ch. 10 & 11)**
+  * **Schema:** `food_tracking_db`
+  * **Key Concepts:** Database and table creation (`CREATE DATABASE`, `CREATE TABLE`), constraints (`PRIMARY KEY`, `UNIQUE`, `NOT NULL`, `CHECK`, `FOREIGN KEY`), table modifications (`ALTER TABLE`), enumerated types concept, and multi-table `JOIN` queries.
+  * **Status:** Completed
 ---
 
 # Execution Guide
@@ -94,8 +108,9 @@ Each assignment directory in this repository is completely self-contained with i
 Navigate into the desired module directory (e.g.,  
 `Assignment_02_Retrieve_Data_From_a_Single_Table/`,  
 `Assignment_03_Retrieve_Data_From_2_or_More_Tables/`,   
-`Assignment_04_DML_and_Summary_Queries/`, or  
-`Assignment_06_Functions_and_Window_Functions/`).
+`Assignment_04_DML_and_Summary_Queries/`,  
+`Assignment_06_Functions_and_Window_Functions/`,or   
+`Assignment_07_DDL_Statements`).
 
 ### 2. Initialize & Populate the Database
 Open **MySQL Workbench** and execute the setup scripts located in the `scripts/` subfolder in numerical order:
