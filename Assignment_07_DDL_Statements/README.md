@@ -1,68 +1,62 @@
-# Assignment 06: Functions, Conditional Expressions, and Window Functions
+# Assignment 07: DDL Statements, Constraints, and Table Modifications
 
-This assignment demonstrates advanced scalar functions, string manipulation, numeric formatting, date and time calculations, control flow logic (`IF`, `CASE`), and ranking window functions (`RANK`, `DENSE_RANK`) using MySQL Workbench and Murach's MySQL concepts.
+This assignment covers database and table creation, data definition language (DDL) statements, implementation of primary and foreign keys via `ALTER TABLE`, check and unique constraints, data loading (`INSERT` with `DEFAULT` and `STR_TO_DATE`), and relational query solutions using MySQL Workbench and Murach's MySQL concepts (Chapters 10 & 11).
 
 ## Database Overview
 
-* **RDBMS / Tool:** MySQL / MySQL Workbench
-* **Sample Schema:** Oracle Tutorial (`OT`) Sample Database & core enterprise tables (`employees`, `customers`, `products`, `orders`, `order_items`, `locations`)
-* **Core Tables:** `order_items`, `employees`, `customers`, `products`, `orders`, `locations`
+- **RDBMS / Tool:** MySQL / MySQL Workbench
+
+- **Sample Schema:** `food_tracking_db`
+
+- **Core Tables:** `judgements`, `food_items`, `consumption`
 
 ---
 
-The database diagram is located at `docs/Oracle Tutorial ERD.png`.
+The database diagram is located at `docs/food_tracking_erd.png`.
 
-![ERD](docs/Oracle%20Tutorial%20ERD.png)
+![ERD](docs/food_tracking_erd.png)
 
 ---
 
 ## Repository Structure
 
 ```text
-Assignment_06_Functions_and_Window_Functions/
+Assignment_07_DDL_Statements/
 ├── docs/
-│   └── Functions_Worksheet.pdf               # Submission report with queries and result grids
-│   └── Oracle Tutorial ERD.png               # Relational schema
+│   ├── DDL_Statements_Worksheet.docx            # Submission report with answers, code, and result screenshots
+│   └── food_tracking_erd.png                    # Relational schema ERD diagram
 ├── scripts/
-│   └── 01_Worksheet_Functions.sql            # SQL solutions for functions, conditional expressions, and window functions
+│   ├── 01_create_and_load_food_tracking_db.sql  # Database creation, table DDL, ALTER TABLE constraints, and data loading
+│   └── 02_worksheet_queries.sql                 # SELECT query solutions for worksheet tasks
 └── README.md
 ```
 ---
 
 # Tasks Summary
 
-* **Task 1: Order Item Total Calculation & Formatting**  
-  Calculates the total cost for each order item (`quantity * unit_price`) and formats the resulting monetary value to two decimal places using the `FORMAT()` function.
+* **Task 1: Primary Keys Identification** 
+  Determines and documents the primary keys for each table (`judgements`, `food_items`, and the composite primary key `(calorie_id, dates)` for `consumption`).
 
-* **Task 2: Employee Name and Title Concatenation**  
-  Concatenates employee first and last names separated by a comma, followed by their job title using `CONCAT_WS()`.
+* **Task 2: Foreign Keys Relational Mapping**  
+  Identifies foreign key constraints linking `food_items` to `judgements` (`judgement_id`) and `consumption` to `food_items` (`calorie_id`).
 
-* **Task 3: Dynamic Employee Login Generation**  
-  Generates a standardized uppercase login name by combining the first letter of the employee's first name, their last name, and a randomized two-digit number (`LEFT()`, `CONCAT()`, `LPAD()`, `RAND()`, `UPPER()`).
+* **Task 3: ENUM Data Type Analysis**  
+  Evaluates where `ENUM` data types would be appropriate for restricted categorical columns such as `judgement` and `unit_measure`.
 
-* **Task 4: Longest Customer Address Analysis**  
-  Finds the maximum character length among all customer street addresses in the `customers` table (`MAX(LENGTH())`).
+* **Task 4: Additional Constraints Implementation (`ALTER TABLE`)**  
+  Applies non-key constraints after table creation, including foreign keys, composite primary keys, and a `CHECK` constraint ensuring `how_many_units > 0`.
 
-* **Task 5: Comma Position in Customer Addresses (Names Starting with 'O')**  
-  Locates the position of the first comma in the address column specifically for companies whose name starts with the letter 'O' (`LOCATE()`, `REGEXP_LIKE()`).
+* **Task 5: Database and Table Creation (DDL)** 
+  Executes `CREATE DATABASE` and `CREATE TABLE` statements for the `food_tracking_db` schema with appropriate data types, `AUTO_INCREMENT`, `UNIQUE`, and `NOT NULL` rules.
 
-* **Task 6: Product Profit Calculation & Rounding**  
-  Calculates product profit by subtracting standard cost from list price and rounds the result to zero decimal places (`ROUND()`).
+* **Task 6: Data Population (DML)**  
+  Loads initial records into `judgements`, `food_items`, and `consumption` using `INSERT` statements with `DEFAULT` for auto-increment fields and `STR_TO_DATE()` for American date formatting.
 
-* **Task 7: Birthdate Day of the Week Extraction**  
-  Converts a date string into a date format and extracts the corresponding day of the week (`DAYNAME()`, `STR_TO_DATE()`).
+* **Task 7: Food Items Judgement Retrieval (`JOIN`)**  
+  Retrieves the text judgement (instead of the ID) for each food item using an inner join between `food_items` and `judgements`.
 
-* **Task 8: Conditional Order Action Assignment (`CASE`)**  
-  Uses the `CASE` control flow function to assign operational action items based on order statuses (e.g., "send invoice" for shipped, "OK" for pending, "follow up" for canceled).
-
-* **Task 9: Location Classification (`IF`)**  
-  Uses the `IF` conditional statement to add a status column classifying location records as 'Domestic' (for US) or 'International' (for all other countries).
-
-* **Task 10: Employee Employment Tenure Calculation**  
-  Calculates the length of employment in full years from each employee's hire date to the current date (`YEAR()`, `CURRENT_DATE()`).
-
-* **Task 11: Customer Credit Limit Ranking (`RANK` & `DENSE_RANK`)**  
-  Applies advanced window functions (`RANK()` and `DENSE_RANK()`) ordered by customer credit limit across all customer records.
+* **Task 8: Specific Date Consumption Query (`WHERE` & `JOIN`)**  
+  Queries consumed food items specifically for October 4 (`10/4/2025`) using multi-table joins across `food_items`, `consumption`, and `judgements`, filtered by month and day functions.
 
 ---
 
@@ -70,6 +64,8 @@ Assignment_06_Functions_and_Window_Functions/
 
 ### Using MySQL Workbench (GUI)
 1. Open **MySQL Workbench** and establish a connection to your local MySQL server.
-2. Ensure the Oracle Tutorial (`OT`) database—containing core tables such as `order_items`, `employees`, `customers`, `products`, `orders`, and `locations`—is installed and active on your local instance.
-3. Open and execute `scripts/01_Worksheet_Functions.sql` sequentially. Make sure the correct database context (`USE OT;`) is set before running queries involving scalar functions, string manipulation, numeric formatting, conditional logic (`IF`, `CASE`), date calculations, and ranking window functions (`RANK`, `DENSE_RANK`).
-4. Verify your live results against the compiled report and execution screenshots available in the `docs/` folder.
+
+2. Create and initialize the `food_tracking_db` database environment.
+3. Open and execute `scripts/01_create_and_load_food_tracking_db.sql` sequentially to create tables, apply constraints via `ALTER TABLE`, and load initial sample records using `DEFAULT` and `STR_TO_DATE()`.
+4. Open and execute `scripts/02_worksheet_queries.sql` to run the required `SELECT` queries (including inner joins and date filters) for the assignment tasks.
+5. Verify your live results and table structures against the compiled worksheet report and execution screenshots available in the `docs/` folder.
