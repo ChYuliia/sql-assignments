@@ -1,62 +1,81 @@
-# Assignment 07: DDL Statements, Constraints, and Table Modifications
+# Midterm Project: Project Management Database Architecture and Analytics
 
-This assignment covers database and table creation, data definition language (DDL) statements, implementation of primary and foreign keys via `ALTER TABLE`, check and unique constraints, data loading (`INSERT` with `DEFAULT` and `STR_TO_DATE`), and relational query solutions using MySQL Workbench and Murach's MySQL concepts (Chapters 10 & 11).
+This project encompasses the comprehensive design, implementation, population, and analytical querying of a centralized project management relational database (`pm_db`), completed as the Midterm Project for the **CIS / SQL Programming** curriculum at **Sinclair Community College**.
+
+The system unifies project portfolio management, resource allocation, task tracking, and labor cost analysis, transitioning organizational workflows from fragmented spreadsheets to a robust relational environment[cite: 1].
 
 ## Database Overview
 
-- **RDBMS / Tool:** MySQL / MySQL Workbench
-
-- **Sample Schema:** `food_tracking_db`
-
-- **Core Tables:** `judgements`, `food_items`, `consumption`
+- **RDBMS / Tool:** MySQL 8.0 / MySQL Workbench
+- **Sample Schema:** `pm_db`
+- **Core Tables:** `departments`, `employees`, `projects`, `tasks`, `time_logs`
 
 ---
 
-The database diagram is located at `docs/food_tracking_erd.png`.
+The database entity-relationship diagram is located at `docs/pm_db_erd.png`.
 
-![ERD](docs/food_tracking_erd.png)
+![ERD](docs/pm_db_erd.png)
 
 ---
 
 ## Repository Structure
 
 ```text
-Assignment_07_DDL_Statements/
+Midterm_Project/
 ├── docs/
-│   ├── DDL_Statements_Worksheet.docx            # Submission report with answers, code, and result screenshots
-│   └── food_tracking_erd.png                    # Relational schema ERD diagram
+│   ├── Midterm_Project_Report.docx            # Comprehensive submission report with description, DBDL, and result screenshots
+│   └── pm_db_erd.png                          # Relational schema ERD diagram
 ├── scripts/
-│   ├── 01_create_and_load_food_tracking_db.sql  # Database creation, table DDL, ALTER TABLE constraints, and data loading
-│   └── 02_worksheet_queries.sql                 # SELECT query solutions for worksheet tasks
+│   │   ├── 01_create_pm_db.sql                # Database creation, table DDL, and ALTER TABLE constraints
+│   │   ├── 02_insert_pm_db.sql                # Data insertion, archival table workflow, and DML updates
+│   │   └── 03_queries_pm_db.sql               # Summary aggregates, filtering, functions, joins, and set operations
 └── README.md
 ```
 ---
+## Technical Scope & Key Features
+- **Data Definition Language (DDL):** Creation of 5 normalized relational tables with auto-increment primary keys, unique constraints, NOT NULL rules, default initializations (`CURRENT_DATE`, status flags), and ANSI CHECK constraints (e.g., salary thresholds, completion percentage bounds 0–100, valid date ranges).   
+- **Referential Integrity:** Foreign key configurations utilizing cascading rules (`ON DELETE CASCADE` and `ON DELETE SET NULL`).   
+- **Data Manipulation & TCL:** Robust DML operations (`INSERT`, `UPDATE`, `DELETE`) for managing records, table backup and archival workflows (`CREATE TABLE ... SELECT` followed by `DROP TABLE`), and transaction control.   
+- **Advanced Querying & Aggregations:** Summary reports utilizing `SUM`, `AVG`, `COUNT`, `MIN`, `MAX`, `GROUP BY`, and `HAVING` filters.   
+- **Filtering, Functions & Conditional Logic:** Range filtering (`BETWEEN`), multi-value matching (`IN`), pattern matching (`LIKE`), string concatenation (`CONCAT`), date extraction (`MONTH`), text slicing (`SUBSTR`), string length (`LENGTH`), numeric rounding (`ROUND`), conditional categorization (`CASE`), and `IFNULL` transformations.   
+- **Multi-Table Joins & Set Operations:** Complex inner/outer joins across 3+ tables and `UNION` set operations.
 
-# Tasks Summary
+---
 
-* **Task 1: Primary Keys Identification** 
-  Determines and documents the primary keys for each table (`judgements`, `food_items`, and the composite primary key `(calorie_id, dates)` for `consumption`).
+## Tasks Summary
 
-* **Task 2: Foreign Keys Relational Mapping**  
-  Identifies foreign key constraints linking `food_items` to `judgements` (`judgement_id`) and `consumption` to `food_items` (`calorie_id`).
+- **Task 1: System Description & Stakeholders**  
+  Outlines the project management database objectives, supported tasks, operational processes, target user groups, and system limitations.
 
-* **Task 3: ENUM Data Type Analysis**  
-  Evaluates where `ENUM` data types would be appropriate for restricted categorical columns such as `judgement` and `unit_measure`.
+- **Task 2: Schema & ERD Architecture**  
+  Provides the database definition language (DBDL) and relational Entity-Relationship Diagram (ERD) defining tables and foreign key relationships.
 
-* **Task 4: Additional Constraints Implementation (`ALTER TABLE`)**  
-  Applies non-key constraints after table creation, including foreign keys, composite primary keys, and a `CHECK` constraint ensuring `how_many_units > 0`.
+- **Task 3–7: Schema Creation & Constraints (DDL)**  
+  Establishes the five core tables (`departments`, `employees`, `projects`, `tasks`, `time_logs`) with auto-increment primary keys, foreign keys, `NOT NULL` rules, default values, and strict ANSI `CHECK` constraints.
 
-* **Task 5: Database and Table Creation (DDL)** 
-  Executes `CREATE DATABASE` and `CREATE TABLE` statements for the `food_tracking_db` schema with appropriate data types, `AUTO_INCREMENT`, `UNIQUE`, and `NOT NULL` rules.
+- **Task 8: Archival Table & Drop Workflow**  
+  Demonstrates creating a backup table (`active_employee_archive`) from another table's structure and data, followed by executing a `DROP TABLE` statement.
 
-* **Task 6: Data Population (DML)**  
-  Loads initial records into `judgements`, `food_items`, and `consumption` using `INSERT` statements with `DEFAULT` for auto-increment fields and `STR_TO_DATE()` for American date formatting.
+- **Task 9: Data Population (DML)**  
+  Populates major tables with comprehensive test records utilizing diverse data types (`VARCHAR`, `INT`, `DATE`, `DECIMAL`).
 
-* **Task 7: Food Items Judgement Retrieval (`JOIN`)**  
-  Retrieves the text judgement (instead of the ID) for each food item using an inner join between `food_items` and `judgements`.
+- **Task 10: Data Modifications (UPDATE)**  
+  Executes targeted update operations, including salary adjustments via subqueries, task status/priority updates, and project completion timestamping.
 
-* **Task 8: Specific Date Consumption Query (`WHERE` & `JOIN`)**  
-  Queries consumed food items specifically for October 4 (`10/4/2025`) using multi-table joins across `food_items`, `consumption`, and `judgements`, filtered by month and day functions.
+- **Task 11: Summary Aggregates & Grouping**  
+  Implements summary queries utilizing aggregate functions (`SUM`, `AVG`, `COUNT`, `MIN`, `MAX`), `GROUP BY` clauses, and `HAVING` filtering.
+
+- **Task 12: Filtering, Functions & Expressions**  
+  Applies row restrictions using `BETWEEN`, `IN`, and `LIKE` operators, column aliases, basic arithmetic, string concatenation (`CONCAT`), `DISTINCT`, sorting (`ORDER BY`), `NULL` value handling, date extraction (`MONTH`), text slicing (`SUBSTR`), string length (`LENGTH`), and numeric rounding (`ROUND`).
+
+- **Task 13: Conditional Logic & Transformations**  
+  Utilizes `CASE` statements for portfolio budget categorization and `IFNULL` functions for unassigned date transformations.
+
+- **Task 14: Multi-Table Joins & Set Operations**  
+  Performs complex relational queries including 3-table joins with filtering, `LEFT OUTER JOIN`, `INNER JOIN`, and `UNION` set operations.
+
+- **Task 15: Submission & Documentation**  
+  Assembles the comprehensive project report, schema documentation, result screenshots, and fully commented SQL execution scripts.
 
 ---
 
@@ -64,8 +83,7 @@ Assignment_07_DDL_Statements/
 
 ### Using MySQL Workbench (GUI)
 1. Open **MySQL Workbench** and establish a connection to your local MySQL server.
-
-2. Create and initialize the `food_tracking_db` database environment.
-3. Open and execute `scripts/01_create_and_load_food_tracking_db.sql` sequentially to create tables, apply constraints via `ALTER TABLE`, and load initial sample records using `DEFAULT` and `STR_TO_DATE()`.
-4. Open and execute `scripts/02_worksheet_queries.sql` to run the required `SELECT` queries (including inner joins and date filters) for the assignment tasks.
-5. Verify your live results and table structures against the compiled worksheet report and execution screenshots available in the `docs/` folder.
+2. Open and execute `scripts/01_create_pm_db.sql` sequentially to create the `pm_db` database, define tables, establish columns, defaults, and apply foreign key constraints via `ALTER TABLE`.
+3. Open and execute `scripts/02_insert_pm_db.sql` to populate initial test records across major tables, execute the backup table archival workflow, and run the required `UPDATE` statements.
+4. Open and execute `scripts/03_queries_pm_db.sql` to run the analytical queries, aggregate functions, `GROUP BY`/`HAVING` filters, scalar transformations, conditional logic, and multi-table joins.
+5. Verify your live results against the compiled project report and execution screenshots available in the `docs/` folder.
