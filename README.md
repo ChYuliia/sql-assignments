@@ -55,7 +55,6 @@ sql_assignments/
 │   ├── scripts/
 │   │   └── 01_Worksheet_Functions.sql
 │   └── README.md
-└── README.md
 │
 ├── Assignment_07_DDL_Statements/          
 │   ├── docs/
@@ -64,7 +63,18 @@ sql_assignments/
 │   ├── scripts/
 │   │   ├── 01_create_and_load_food_tracking_db.sql  
 │   │   └── 02_worksheet_queries.sql                 
-│   └── README.md                          
+│   └── README.md
+│
+├── Assignment_08_Midterm_Project/
+│   ├── docs/
+│   │   ├── Midterm_Project_Report.pdf
+│   │   └── pm_db_erd.png
+│   ├── scripts/
+│   │   ├── 01_create_pm_db.sql
+│   │   ├── 02_insert_pm_db.sql
+│   │   └── 03_queries_pm_db.sql
+│   └── README.md
+└── README.md                    
 ```
 ---
 
@@ -93,6 +103,11 @@ sql_assignments/
 * **Assignment 07: DDL Statements, Constraints, and Table Modifications (Murach Ch. 10 & 11)**
   * **Schema:** `food_tracking_db`
   * **Key Concepts:** Database and table creation (`CREATE DATABASE`, `CREATE TABLE`), constraints (`PRIMARY KEY`, `UNIQUE`, `NOT NULL`, `CHECK`, `FOREIGN KEY`), table modifications (`ALTER TABLE`), enumerated types concept, and multi-table `JOIN` queries.
+  * **Status:** Completed
+ 
+* **Midterm Project: Project Management Database**
+  * **Schema:** `pm_db` (Departments, Employees, Projects, Tasks, Time Logs)
+  * **Key Concepts:** Comprehensive relational database design, DDL/DML/TCL statements, cascading referential integrity (`ON DELETE CASCADE` / `SET NULL`), advanced `CHECK` constraints and defaults, table archiving (`CREATE TABLE ... SELECT`), summary aggregations (`GROUP BY` / `HAVING`), complex multi-table joins, set operations (`UNION`), scalar/string/date functions, `CASE` conditional expressions, and `IFNULL` handling.
   * **Status:** Completed
 ---
 
