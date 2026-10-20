@@ -74,6 +74,14 @@ sql_assignments/
 │   │   ├── 02_insert_pm_db.sql
 │   │   └── 03_queries_pm_db.sql
 │   └── README.md
+|
+├── Assignment_09_Subqueries/
+│   ├── docs/
+│   │   ├── Subqueries_Worksheet.docx
+│   │   └── Oracle Tutorial ERD.png
+│   ├── scripts/
+│   │   └── 01_Worksheet_Subqueries.sql
+│   └── README.md
 └── README.md                    
 ```
 ---
@@ -109,6 +117,11 @@ sql_assignments/
   * **Schema:** `pm_db` (Departments, Employees, Projects, Tasks, Time Logs)
   * **Key Concepts:** Comprehensive relational database design, DDL/DML/TCL statements, cascading referential integrity (`ON DELETE CASCADE` / `SET NULL`), advanced `CHECK` constraints and defaults, table archiving (`CREATE TABLE ... SELECT`), summary aggregations (`GROUP BY` / `HAVING`), complex multi-table joins, set operations (`UNION`), scalar/string/date functions, `CASE` conditional expressions, and `IFNULL` handling.
   * **Status:** Completed
+
+* **Assignment 09: Subqueries and Common Table Expressions (Murach Ch. 7)**
+  * **Schema:** Oracle Tutorial (`OT`) (`order_items`, `products`, `warehouses`, `locations`, `countries`, `customers`)
+  * **Key Concepts:** Subqueries in `WHERE` clauses, scalar subqueries with aggregate functions (`AVG`), multi-table subquery filtering (`IN`), Common Table Expressions (`WITH` syntax), multi-CTE pipelines, and aggregated order amount calculations.
+  * **Status:** Completed
 ---
 
 # Execution Guide
@@ -124,8 +137,10 @@ Navigate into the desired module directory (e.g.,
 `Assignment_02_Retrieve_Data_From_a_Single_Table/`,  
 `Assignment_03_Retrieve_Data_From_2_or_More_Tables/`,   
 `Assignment_04_DML_and_Summary_Queries/`,  
-`Assignment_06_Functions_and_Window_Functions/`,or   
-`Assignment_07_DDL_Statements`).
+`Assignment_06_Functions_and_Window_Functions/`,   
+`Assignment_07_DDL_Statements`,  
+`Assignment_08_Midterm_Project/`, or  
+`Assignment_09_Subqueries/`).
 
 ### 2. Initialize & Populate the Database
 Open **MySQL Workbench** and execute the setup scripts located in the `scripts/` subfolder in numerical order:
