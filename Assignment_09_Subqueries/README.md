@@ -1,62 +1,61 @@
-# Assignment 07: DDL Statements, Constraints, and Table Modifications
+# Assignment 09: Subqueries and Common Table Expressions
 
-This assignment covers database and table creation, data definition language (DDL) statements, implementation of primary and foreign keys via `ALTER TABLE`, check and unique constraints, data loading (`INSERT` with `DEFAULT` and `STR_TO_DATE`), and relational query solutions using MySQL Workbench and Murach's MySQL concepts (Chapters 10 & 11).
+This assignment covers subqueries in `WHERE` clauses, scalar subqueries with aggregate functions (`AVG`), multi-table filtering using the `IN` operator and complex `JOIN` paths, and the design of single and multi-step Common Table Expressions (CTEs) using MySQL Workbench and Murach's MySQL concepts (Chapter 7).
 
 ## Database Overview
 
 - **RDBMS / Tool:** MySQL / MySQL Workbench
 
-- **Sample Schema:** `food_tracking_db`
 
-- **Core Tables:** `judgements`, `food_items`, `consumption`
+- **Sample Schema:** Oracle Tutorial (`OT`)
+
+
+- **Core Tables:** `order_items`, `products`, `warehouses`, `locations`, `countries`, `customers`
+
 
 ---
 
-The database diagram is located at `docs/food_tracking_erd.png`.
+The database diagram is located at `docs/Oracle Tutorial ERD.png`.
 
-![ERD](docs/food_tracking_erd.png)
+![ERD](docs/Oracle%20Tutorial%20ERD.png)
 
 ---
 
 ## Repository Structure
 
 ```text
-Assignment_07_DDL_Statements/
+Assignment_09_Subqueries/
 ├── docs/
-│   ├── DDL_Statements_Worksheet.docx            # Submission report with answers, code, and result screenshots
-│   └── food_tracking_erd.png                    # Relational schema ERD diagram
+│   ├── Subqueries_Worksheet.docx              # Submission report with answers, code, and result screenshots
+│   └── Oracle Tutorial ERD.png                # Relational schema ERD diagram
 ├── scripts/
-│   ├── 01_create_and_load_food_tracking_db.sql  # Database creation, table DDL, ALTER TABLE constraints, and data loading
-│   └── 02_worksheet_queries.sql                 # SELECT query solutions for worksheet tasks
+│   └── 01_worksheet_subqueries.sql            # Subquery, CTE, and aggregated query solutions for worksheet tasks
 └── README.md
 ```
 ---
 
-# Tasks Summary
+## Tasks Summary
 
-* **Task 1: Primary Keys Identification** 
-  Determines and documents the primary keys for each table (`judgements`, `food_items`, and the composite primary key `(calorie_id, dates)` for `consumption`).
+- **Task 1: Average Price Comparison and Grouping**  
+  Calculates the overall average `unit_price` in `order_items`, then filters and groups items whose unit price exceeds the average, sorted by `item_id`.
 
-* **Task 2: Foreign Keys Relational Mapping**  
-  Identifies foreign key constraints linking `food_items` to `judgements` (`judgement_id`) and `consumption` to `food_items` (`calorie_id`).
+- **Task 2: Product Name Join with Subquery Filtering**  
+  Joins the filtered items query from Task 1 with the `products` table to display corresponding product names alongside item IDs and prices.
 
-* **Task 3: ENUM Data Type Analysis**  
-  Evaluates where `ENUM` data types would be appropriate for restricted categorical columns such as `judgement` and `unit_measure`.
+- **Task 3: Multi-Table Subquery Filtering**  
+  Retrieves inventory stored in Mexico by chaining subqueries across `warehouses`, `locations`, and `countries` using the `IN` operator.
 
-* **Task 4: Additional Constraints Implementation (`ALTER TABLE`)**  
-  Applies non-key constraints after table creation, including foreign keys, composite primary keys, and a `CHECK` constraint ensuring `how_many_units > 0`.
+- **Task 4: CTE Refactoring for Warehouse Inventory**  
+  Rewrites the Mexico inventory query using a Common Table Expression (`WITH`) to improve modularity and join readability.
 
-* **Task 5: Database and Table Creation (DDL)** 
-  Executes `CREATE DATABASE` and `CREATE TABLE` statements for the `food_tracking_db` schema with appropriate data types, `AUTO_INCREMENT`, `UNIQUE`, and `NOT NULL` rules.
+- **Task 5: Above-Average Order Items Count**  
+  Calculates the total amount (`quantity * unit_price`) for order items and counts how many individual items exceed the average order item amount using a CTE.
 
-* **Task 6: Data Population (DML)**  
-  Loads initial records into `judgements`, `food_items`, and `consumption` using `INSERT` statements with `DEFAULT` for auto-increment fields and `STR_TO_DATE()` for American date formatting.
+- **Task 6: Multi-CTE Order Amount Average Calculation**  
+  Uses a multi-step CTE pipeline (`item_amounts` followed by `order_totals`) to compute the total sum per order and determine the overall average order amount.
 
-* **Task 7: Food Items Judgement Retrieval (`JOIN`)**  
-  Retrieves the text judgement (instead of the ID) for each food item using an inner join between `food_items` and `judgements`.
-
-* **Task 8: Specific Date Consumption Query (`WHERE` & `JOIN`)**  
-  Queries consumed food items specifically for October 4 (`10/4/2025`) using multi-table joins across `food_items`, `consumption`, and `judgements`, filtered by month and day functions.
+- **Task 7: Low Credit Limit Customer Count**  
+  Counts the total number of customers whose `credit_limit` falls below the calculated average credit limit across the customer base.
 
 ---
 
@@ -64,8 +63,6 @@ Assignment_07_DDL_Statements/
 
 ### Using MySQL Workbench (GUI)
 1. Open **MySQL Workbench** and establish a connection to your local MySQL server.
-
-2. Create and initialize the `food_tracking_db` database environment.
-3. Open and execute `scripts/01_create_and_load_food_tracking_db.sql` sequentially to create tables, apply constraints via `ALTER TABLE`, and load initial sample records using `DEFAULT` and `STR_TO_DATE()`.
-4. Open and execute `scripts/02_worksheet_queries.sql` to run the required `SELECT` queries (including inner joins and date filters) for the assignment tasks.
-5. Verify your live results and table structures against the compiled worksheet report and execution screenshots available in the `docs/` folder.
+2. Ensure the Oracle Tutorial (`OT`) database schema is loaded and available in your environment.
+3. Open and execute `scripts/01_worksheet_subqueries.sql` to run all subquery, multi-table filter, and Common Table Expression (CTE) solutions sequentially.
+4. Verify your live query results and result sets against the compiled worksheet report, task descriptions, and execution screenshots available in the `docs/` folder.
