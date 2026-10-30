@@ -9,7 +9,12 @@
 --               use this sample database.
 --------------------------------------------------------------------------------------
 
+-- create the database
+DROP DATABASE IF EXISTS ot;
+CREATE DATABASE ot;
 
+-- select the datebase
+USE ot;
 ---------------------------------------------------------------------------
 -- execute the following statements to create tables
 ---------------------------------------------------------------------------
