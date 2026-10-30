@@ -82,6 +82,14 @@ sql_assignments/
 │   ├── scripts/
 │   │   └── 01_Worksheet_Subqueries.sql
 │   └── README.md
+|
+├── Assignment_10_Views_and_Transactions/
+│   ├── docs/
+│   │   ├── Views_Worksheet.docx
+│   │   └── Oracle Tutorial ERD.png
+│   ├── scripts/
+│   │   └── 01_Worksheet_Views.sql
+│   └── README.md
 └── README.md                    
 ```
 ---
@@ -122,6 +130,11 @@ sql_assignments/
   * **Schema:** Oracle Tutorial (`OT`) (`order_items`, `products`, `warehouses`, `locations`, `countries`, `customers`)
   * **Key Concepts:** Subqueries in `WHERE` clauses, scalar subqueries with aggregate functions (`AVG`), multi-table subquery filtering (`IN`), Common Table Expressions (`WITH` syntax), multi-CTE pipelines, and aggregated order amount calculations.
   * **Status:** Completed
+ 
+* **Assignment 10: Views and Transaction Control (Murach Ch. 12 & 13)**
+  * **Schema:** Oracle Tutorial (`OT`) (`employees`, `order_items`, `warehouses`, `locations`, `countries`, `products`, `inventories`, `regions`)
+  * **Key Concepts:** Database view creation (`CREATE OR REPLACE VIEW`), filtering and sorting in views, multi-table joins in views, updatable views vs. read-only views, derived/calculated column update constraints (Error 1348), view data integrity via `WITH CHECK OPTION` (Error 1369), and transaction processing behavior (`SET autocommit = 0`, `ROLLBACK` limitations, and DDL-triggered implicit commits).
+  * **Status:** Completed
 ---
 
 # Execution Guide
@@ -140,7 +153,8 @@ Navigate into the desired module directory (e.g.,
 `Assignment_06_Functions_and_Window_Functions/`,   
 `Assignment_07_DDL_Statements`,  
 `Assignment_08_Midterm_Project/`, or  
-`Assignment_09_Subqueries/`).
+`Assignment_09_Subqueries/`, or  
+`Assignment_10_Views_and_Transactions/`).
 
 ### 2. Initialize & Populate the Database
 Open **MySQL Workbench** and execute the setup scripts located in the `scripts/` subfolder in numerical order:
@@ -159,3 +173,4 @@ Compare your live execution output sets against the compiled reports, worksheets
 * Make sure your active connection is connected to your local MySQL server instance.
 * Always check that the correct database is selected or set as default using the `USE database_name;` command before running queries.
 * For modules involving `UPDATE` or `DELETE` statements (such as Assignment 04), ensure safe updates configuration (`SET sql_safe_updates = 0; / SET sql_safe_updates = 1;`) is managed properly around your transaction blocks.
+* **Implicit Commits with DDL:** In MySQL, Data Definition Language statements (`CREATE VIEW`, `ALTER VIEW`, `DROP VIEW`) trigger an implicit `COMMIT`. Even when `SET autocommit = 0;` is configured, running DDL commands permanently commits prior uncommitted DML transactions, bypassing `ROLLBACK`.
