@@ -1,14 +1,14 @@
-# Assignment 10: Views and Transaction Management
+# Assignment 11: Stored Programs and Procedural Logic
 
-This assignment covers creating and querying database views, updating base tables through views, enforcing data integrity using `WITH CHECK OPTION`, handling non-updatable derived expressions, and analyzing transaction behavior under DDL-triggered implicit commits using MySQL Workbench and *Murach's MySQL* concepts (Chapter 12).
+This assignment covers creating and executing stored procedures, managing custom statement delimiters (`DELIMITER //`), defining input parameters, declaring local variables, calculating business metrics via `SELECT ... INTO`, and implementing conditional branching (`IF ... ELSE`) in MySQL Workbench using *Murach's MySQL* concepts (Chapter 13).
+
+---
 
 ## Database Overview
 
 - **RDBMS / Tool:** MySQL 8.0 / MySQL Workbench
-
 - **Sample Schema:** Oracle Tutorial (`OT`)
-
-- **Core Tables:** `employees`, `order_items`, `warehouses`, `locations`, `countries`, `products`, `inventories`, `regions`
+- **Core Tables:** `products`
 
 ---
 
@@ -21,47 +21,26 @@ The database diagram is located at `docs/Oracle Tutorial ERD.png`.
 ## Repository Structure
 
 ```text
-Assignment_10_Views_and_Transactions/
+Assignment_11_Stored_Programs/
 ├── docs/
-│   ├── Views_Worksheet.docx             # Submission report with answers, code, error codes, and result screenshots
-│   └── Oracle Tutorial ERD.png          # Relational schema ERD diagram
+│   ├── Stored_Programs_Worksheet.pdf     # Submission report with SQL statements and output screenshots
+│   └── Oracle Tutorial ERD.png           # Relational schema ERD diagram
 ├── scripts/
-│   └── 01_worksheet_views.sql           # Complete view definitions, DML modifications, and transaction tests
+│   └── 01_worksheet_stored_programs.sql  # Stored procedure definitions, parameter handling, and test calls
 └── README.md
 ```
 ---
 
 ## Tasks Summary
 
-- **Task 1: Employees Name Filtering and Sorting**  
-  Creates a view on the `employees` table filtering records whose first name starts with 'S' or 'T' using regular expressions (`REGEXP '^[S,T]'`), sorted by `last_name DESC`.
+- **Task 1: Basic Stored Procedure Definition & Execution**  
+  Creates and executes a parameterless stored procedure (`first_procedure`) that returns a literal string message (`'I love MySQL'`), utilizing `DELIMITER //` management to handle statement boundaries within the `BEGIN ... END` block.
 
-- **Task 2: Top Line-Item Total Value Calculation**  
-  Defines a view on `order_items` that calculates the total amount per item (`quantity * unit_price AS Total`) and isolates the top 15 highest transactions using `ORDER BY Total DESC LIMIT 15`.
+- **Task 2: Hardcoded Calculation & Conditional Control Flow**  
+  Implements the `check_product_margin` procedure, declaring a local variable (`margin DECIMAL(9,4)`) and using `SELECT ... INTO` to calculate the profit ratio `(list_price - standard_cost) / list_price` for `product_id = 16`. Applies procedural branching (`IF ... ELSE`) against a `0.2` threshold to output either `'good margin'` or an alert message.
 
-- **Task 3: Multi-Table Warehouse Location Directory**  
-  Constructs a relational view joining `warehouses`, `locations`, and `countries` via natural key bindings (`USING (location_id)`, `USING (country_id)`) to map warehouse facilities to their cities, states, and nations.
-
-- **Task 4: Base Table Data Modification via View Abstraction**  
-  Updates the city for the Bombay facility to 'North Bombay' directly through the `view_warehouse_locations` view, demonstrating DML propagation to underlying base tables.
-
-- **Task 5: Product Profit Margin Calculation**  
-  Builds the `product_profit` view from the `products` table computing unit margin (`list_price - standard_cost AS profit`) for each catalog item.
-
-- **Task 6: Derived Column Immutability Evaluation (Error 1348)**  
-  Attempts to update the calculated profit column through the view (`UPDATE product_profit SET profit = 1000 WHERE product_name = 'Crucial'`), triggering `Error Code: 1348` and verifying that derived expressions without direct physical column mapping remain strictly read-only.
-
-- **Task 7: Warehouse Inventory Threshold View with CHECK OPTION**  
-  Creates a multi-table inventory monitoring view (`low_stock_warehouses`) joining `warehouses`, `inventories`, and `products` for quantities strictly under 5 (`WHERE quantity < 5`), appending `WITH CHECK OPTION` to enforce domain integrity.
-
-- **Task 8: Constraint Enforcement via WITH CHECK OPTION (Error 1369)**  
-  Attempts to update a Crucial inventory record to a quantity of 10 through the view, triggering `Error Code: 1369 (CHECK OPTION failed)` due to violating the boundary predicate defined in the view schema.
-
-- **Task 9: Simple View DML Insertion and Deletion Pipeline**  
-  Creates a lightweight view on `regions` (`region_id`, `region_name`) and executes sequential `INSERT` and `DELETE` operations for region 10 ('Iceland') via view queries.
-
-- **Task 10: Transaction Management & Implicit DDL Commit Analysis**  
-  Evaluates transaction rollbacks under `SET autocommit = 0;`, documenting that intermediate DDL statements (`CREATE OR REPLACE VIEW`) trigger implicit `COMMIT` operations that permanently persist changes and render subsequent `ROLLBACK` commands ineffective.
+- **Task 3: Dynamic Parameterization & String Concatenation**  
+  Constructs a reusable procedure (`calculate_product_margin`) accepting an input parameter (`IN product_id_in INT`). Evaluates dynamic product margins and builds diagnostic output messages using `CONCAT()` across multiple test executions (`product_id = 10` and `product_id = 16`).
 
 ---
 
@@ -70,6 +49,6 @@ Assignment_10_Views_and_Transactions/
 ### Using MySQL Workbench (GUI)
 1. Open **MySQL Workbench** and establish a connection to your local MySQL server.
 2. Ensure the Oracle Tutorial (`OT`) database schema is loaded and set as the default schema (`USE ot;`).
-3. Ensure transaction autocommit behavior is controlled before executing DML tests (`SET autocommit = 0;`).
-4. Open and execute `scripts/01_worksheet_views.sql` to execute view definitions, query selections, DML updates, `WITH CHECK OPTION` constraint tests, and transaction statements sequentially.
-5. Verify your live query results, view projections, and expected error code outputs (`Error Code: 1348` and `Error Code: 1369`) against the compiled worksheet report, task explanations, and execution screenshots available in `docs/Views_Worksheet.docx`.
+3. Open `scripts/01_Worksheet_Stored_Programs.sql` in a new SQL query tab.
+4. Execute the script (or run each procedure block sequentially) using the **Execute (all or selection)** button. Note that statements utilize custom delimiters (`DELIMITER //`) to compile procedural blocks without premature termination.
+5. Verify procedure execution outputs from the `CALL` statements in the Result Grid and compare against the screenshots and specifications documented in `docs/Stored_Programs_Worksheet.pdf`.
