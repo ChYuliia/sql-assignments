@@ -23,7 +23,7 @@ The database entity-relationship diagram is located at `docs/pm_db_erd.png`.
 ```text
 Midterm_Project/
 ├── docs/
-│   ├── Midterm_Project_Report.docx            # Comprehensive submission report with description, DBDL, and result screenshots
+│   ├── Midterm_Project_Report.pdf             # Comprehensive submission report with description, DBDL, and result screenshots
 │   └── pm_db_erd.png                          # Relational schema ERD diagram
 ├── scripts/
 │   │   ├── 01_create_pm_db.sql                # Database creation, table DDL, and ALTER TABLE constraints
