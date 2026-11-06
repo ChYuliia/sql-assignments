@@ -23,7 +23,7 @@ The database diagram is located at `docs/food_tracking_erd.png`.
 ```text
 Assignment_07_DDL_Statements/
 ├── docs/
-│   ├── DDL_Statements_Worksheet.docx            # Submission report with answers, code, and result screenshots
+│   ├── DDL_Statements_Worksheet.pdf             # Submission report with answers, code, and result screenshots
 │   └── food_tracking_erd.png                    # Relational schema ERD diagram
 ├── scripts/
 │   ├── 01_create_and_load_food_tracking_db.sql  # Database creation, table DDL, ALTER TABLE constraints, and data loading
