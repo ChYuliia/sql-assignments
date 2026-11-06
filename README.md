@@ -90,7 +90,16 @@ sql_assignments/
 │   ├── scripts/
 │   │   └── 01_Worksheet_Views.sql
 │   └── README.md
-└── README.md                    
+└── README.md
+|
+├── Assignment_11_Stored_Programs/
+│   ├── docs/
+│   │   ├── Stored_Programs_Worksheet.docx
+│   │   └── Oracle Tutorial ERD.png
+│   ├── scripts/
+│   │   └── 01_worksheet_wtored_programs.sql
+│   └── README.md
+└── README.md              
 ```
 ---
 
@@ -135,6 +144,11 @@ sql_assignments/
   * **Schema:** Oracle Tutorial (`OT`) (`employees`, `order_items`, `warehouses`, `locations`, `countries`, `products`, `inventories`, `regions`)
   * **Key Concepts:** Database view creation (`CREATE OR REPLACE VIEW`), filtering and sorting in views, multi-table joins in views, updatable views vs. read-only views, derived/calculated column update constraints (Error 1348), view data integrity via `WITH CHECK OPTION` (Error 1369), and transaction processing behavior (`SET autocommit = 0`, `ROLLBACK` limitations, and DDL-triggered implicit commits).
   * **Status:** Completed
+
+* **Assignment 11: Stored Programs and Procedural Logic (Murach Ch. 13)**
+  * **Schema:** Oracle Tutorial (`OT`) (`products`)
+  * **Key Concepts:** Delimiter management (`DELIMITER //`), stored procedure creation (`CREATE PROCEDURE`) and removal (`DROP PROCEDURE IF EXISTS`), input parameters (`IN`), local variable declarations (`DECLARE`) with numeric precision (`DECIMAL(9,4)`), assigning query output to variables (`SELECT ... INTO`), string concatenation (`CONCAT`), and procedural control flow (`IF ... ELSE`).
+  * **Status:** Completed
 ---
 
 # Execution Guide
@@ -154,7 +168,8 @@ Navigate into the desired module directory (e.g.,
 `Assignment_07_DDL_Statements`,  
 `Assignment_08_Midterm_Project/`, or  
 `Assignment_09_Subqueries/`, or  
-`Assignment_10_Views_and_Transactions/`).
+`Assignment_10_Views_and_Transactions/`, or  
+`Assignment_11_Stored_Programs/`).
 
 ### 2. Initialize & Populate the Database
 Open **MySQL Workbench** and execute the setup scripts located in the `scripts/` subfolder in numerical order:
@@ -174,3 +189,4 @@ Compare your live execution output sets against the compiled reports, worksheets
 * Always check that the correct database is selected or set as default using the `USE database_name;` command before running queries.
 * For modules involving `UPDATE` or `DELETE` statements (such as Assignment 04), ensure safe updates configuration (`SET sql_safe_updates = 0; / SET sql_safe_updates = 1;`) is managed properly around your transaction blocks.
 * **Implicit Commits with DDL:** In MySQL, Data Definition Language statements (`CREATE VIEW`, `ALTER VIEW`, `DROP VIEW`) trigger an implicit `COMMIT`. Even when `SET autocommit = 0;` is configured, running DDL commands permanently commits prior uncommitted DML transactions, bypassing `ROLLBACK`.
+* **Statement Delimiters in Stored Programs:** When defining procedures, functions, or triggers in MySQL Workbench, always reassign the command delimiter (e.g., `DELIMITER //`) so semicolons inside the `BEGIN ... END` body do not prematurely terminate procedure creation.
