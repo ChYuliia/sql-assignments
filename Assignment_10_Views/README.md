@@ -23,7 +23,7 @@ The database diagram is located at `docs/Oracle Tutorial ERD.png`.
 ```text
 Assignment_10_Views_and_Transactions/
 ├── docs/
-│   ├── Views_Worksheet.docx             # Submission report with answers, code, error codes, and result screenshots
+│   ├── Views_Worksheet.pdf              # Submission report with answers, code, error codes, and result screenshots
 │   └── Oracle Tutorial ERD.png          # Relational schema ERD diagram
 ├── scripts/
 │   └── 01_worksheet_views.sql           # Complete view definitions, DML modifications, and transaction tests
@@ -72,4 +72,4 @@ Assignment_10_Views_and_Transactions/
 2. Ensure the Oracle Tutorial (`OT`) database schema is loaded and set as the default schema (`USE ot;`).
 3. Ensure transaction autocommit behavior is controlled before executing DML tests (`SET autocommit = 0;`).
 4. Open and execute `scripts/01_worksheet_views.sql` to execute view definitions, query selections, DML updates, `WITH CHECK OPTION` constraint tests, and transaction statements sequentially.
-5. Verify your live query results, view projections, and expected error code outputs (`Error Code: 1348` and `Error Code: 1369`) against the compiled worksheet report, task explanations, and execution screenshots available in `docs/Views_Worksheet.docx`.
+5. Verify your live query results, view projections, and expected error code outputs (`Error Code: 1348` and `Error Code: 1369`) against the compiled worksheet report, task explanations, and execution screenshots available in `docs/Views_Worksheet.pdf`.
