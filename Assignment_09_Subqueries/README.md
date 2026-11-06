@@ -26,7 +26,7 @@ The database diagram is located at `docs/Oracle Tutorial ERD.png`.
 ```text
 Assignment_09_Subqueries/
 ├── docs/
-│   ├── Subqueries_Worksheet.docx              # Submission report with answers, code, and result screenshots
+│   ├── Subqueries_Worksheet.pdf               # Submission report with answers, code, and result screenshots
 │   └── Oracle Tutorial ERD.png                # Relational schema ERD diagram
 ├── scripts/
 │   └── 01_worksheet_subqueries.sql            # Subquery, CTE, and aggregated query solutions for worksheet tasks
