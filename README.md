@@ -58,7 +58,7 @@ sql_assignments/
 │
 ├── Assignment_07_DDL_Statements/          
 │   ├── docs/
-│   │   ├── DDL_Statements_Worksheet.docx  
+│   │   ├── DDL_Statements_Worksheet.pdf  
 │   │   └── food_tracking_erd.png          
 │   ├── scripts/
 │   │   ├── 01_create_and_load_food_tracking_db.sql  
@@ -77,7 +77,7 @@ sql_assignments/
 |
 ├── Assignment_09_Subqueries/
 │   ├── docs/
-│   │   ├── Subqueries_Worksheet.docx
+│   │   ├── Subqueries_Worksheet.pdf
 │   │   └── Oracle Tutorial ERD.png
 │   ├── scripts/
 │   │   └── 01_Worksheet_Subqueries.sql
@@ -85,7 +85,7 @@ sql_assignments/
 |
 ├── Assignment_10_Views_and_Transactions/
 │   ├── docs/
-│   │   ├── Views_Worksheet.docx
+│   │   ├── Views_Worksheet.pdf
 │   │   └── Oracle Tutorial ERD.png
 │   ├── scripts/
 │   │   └── 01_Worksheet_Views.sql
@@ -94,7 +94,7 @@ sql_assignments/
 |
 ├── Assignment_11_Stored_Programs/
 │   ├── docs/
-│   │   ├── Stored_Programs_Worksheet.docx
+│   │   ├── Stored_Programs_Worksheet.pdf
 │   │   └── Oracle Tutorial ERD.png
 │   ├── scripts/
 │   │   └── 01_worksheet_wtored_programs.sql
