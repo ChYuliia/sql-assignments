@@ -99,7 +99,17 @@ sql_assignments/
 │   ├── scripts/
 │   │   └── 01_worksheet_wtored_programs.sql
 │   └── README.md
-└── README.md              
+└── README.md
+|
+├── Assignment_12_Transactions/
+│   ├── docs/
+│   │   └── Transactions_Wprksheet.pdf
+│   ├── scripts/
+│   │   ├── 01_imdb_seed.sql
+│   │   ├── 02_imdb_add_pk.sql
+│   │   ├── 03_imdb_normalize_tables.sql
+│   │   └── 04_worksheet_transactions.sql
+│   └── README.md           
 ```
 ---
 
@@ -149,6 +159,11 @@ sql_assignments/
   * **Schema:** Oracle Tutorial (`OT`) (`products`)
   * **Key Concepts:** Delimiter management (`DELIMITER //`), stored procedure creation (`CREATE PROCEDURE`) and removal (`DROP PROCEDURE IF EXISTS`), input parameters (`IN`), local variable declarations (`DECLARE`) with numeric precision (`DECIMAL(9,4)`), assigning query output to variables (`SELECT ... INTO`), string concatenation (`CONCAT`), and procedural control flow (`IF ... ELSE`).
   * **Status:** Completed
+* **Assignment 12: Transactions, Locking, and Stored Procedures (Murach Ch. 14 & 15)**
+
+  * **Schema:** Oracle Tutorial (`OT`) (`locations`, `countries`) & `imdb` (`movies`, `actor`, `director`)
+  * **Key Concepts:** Atomic transactions (`START TRANSACTION`, `COMMIT`, `ROLLBACK`), autocommit control (`SET autocommit = 0`), exception handling (`DECLARE EXIT/CONTINUE HANDLER FOR SQLEXCEPTION`), table normalization (`CREATE TABLE ... AS SELECT`, `UNION ALL`), `CHECK` constraints (`BETWEEN`), and parameterized stored procedures (`IN` parameters).
+  * **Status:** Completed
 ---
 
 # Execution Guide
@@ -166,10 +181,11 @@ Navigate into the desired module directory (e.g.,
 `Assignment_04_DML_and_Summary_Queries/`,  
 `Assignment_06_Functions_and_Window_Functions/`,   
 `Assignment_07_DDL_Statements`,  
-`Assignment_08_Midterm_Project/`, or  
-`Assignment_09_Subqueries/`, or  
-`Assignment_10_Views_and_Transactions/`, or  
-`Assignment_11_Stored_Programs/`).
+`Assignment_08_Midterm_Project/`,   
+`Assignment_09_Subqueries/`,   
+`Assignment_10_Views_and_Transactions/`,   
+`Assignment_11_Stored_Programs/`, or   
+`Assignment_12_Transactions_and_Stored_Procedures/`).
 
 ### 2. Initialize & Populate the Database
 Open **MySQL Workbench** and execute the setup scripts located in the `scripts/` subfolder in numerical order:
