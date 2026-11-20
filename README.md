@@ -90,7 +90,6 @@ sql_assignments/
 │   ├── scripts/
 │   │   └── 01_Worksheet_Views.sql
 │   └── README.md
-└── README.md
 |
 ├── Assignment_11_Stored_Programs/
 │   ├── docs/
@@ -99,7 +98,6 @@ sql_assignments/
 │   ├── scripts/
 │   │   └── 01_worksheet_wtored_programs.sql
 │   └── README.md
-└── README.md
 |
 ├── Assignment_12_Transactions/
 │   ├── docs/
@@ -109,7 +107,16 @@ sql_assignments/
 │   │   ├── 02_imdb_add_pk.sql
 │   │   ├── 03_imdb_normalize_tables.sql
 │   │   └── 04_worksheet_transactions.sql
-│   └── README.md           
+│   └── README.md
+│
+├── Assignment_13_Triggers_and_Events/
+│   ├── docs/
+│   │   └── Triggers_and_Events_Worksheet.pdf
+│   ├── scripts/
+│   │   └── 01_worksheet_triggers_events.sql
+│   └── README.md
+│
+└── README.md    
 ```
 ---
 
@@ -159,11 +166,16 @@ sql_assignments/
   * **Schema:** Oracle Tutorial (`OT`) (`products`)
   * **Key Concepts:** Delimiter management (`DELIMITER //`), stored procedure creation (`CREATE PROCEDURE`) and removal (`DROP PROCEDURE IF EXISTS`), input parameters (`IN`), local variable declarations (`DECLARE`) with numeric precision (`DECIMAL(9,4)`), assigning query output to variables (`SELECT ... INTO`), string concatenation (`CONCAT`), and procedural control flow (`IF ... ELSE`).
   * **Status:** Completed
-* **Assignment 12: Transactions, Locking, and Stored Procedures (Murach Ch. 14 & 15)**
 
-  * **Schema:** Oracle Tutorial (`OT`) (`locations`, `countries`) & `imdb` (`movies`, `actor`, `director`)
-  * **Key Concepts:** Atomic transactions (`START TRANSACTION`, `COMMIT`, `ROLLBACK`), autocommit control (`SET autocommit = 0`), exception handling (`DECLARE EXIT/CONTINUE HANDLER FOR SQLEXCEPTION`), table normalization (`CREATE TABLE ... AS SELECT`, `UNION ALL`), `CHECK` constraints (`BETWEEN`), and parameterized stored procedures (`IN` parameters).
-  * **Status:** Completed
+* **Assignment 12: Transactions, Locking, and Stored Procedures (Murach Ch. 14 & 15)**
+  - **Schema:** Oracle Tutorial (`OT`) (`locations`, `countries`) & `imdb` (`movies`, `actor`, `director`)
+  - **Key Concepts:** Atomic transactions (`START TRANSACTION`, `COMMIT`, `ROLLBACK`), autocommit control (`SET autocommit = 0`), exception handling (`DECLARE EXIT/CONTINUE HANDLER FOR SQLEXCEPTION`), table normalization (`CREATE TABLE ... AS SELECT`, `UNION ALL`), `CHECK` constraints (`BETWEEN`), and parameterized stored procedures (`IN` parameters).
+  - **Status:** Completed
+
+* **Assignment 13: Triggers and Events (Murach Ch. 16)**
+  - **Schema:** Oracle Tutorial (`OT`) (`locations`, `inventories`, `employees`, `old_job_titles`)
+  - **Key Concepts:** Transaction control inside stored procedures (`SET autocommit = 0`, `START TRANSACTION`, `COMMIT`/`ROLLBACK` with `SQLEXCEPTION` handler), row-level `BEFORE UPDATE` and `AFTER UPDATE` triggers (`FOR EACH ROW`), `OLD` vs. `NEW` row references, null-safe change detection (`<=>`), conditional inventory threshold flagging, and automated audit logging tables (`CREATE TABLE ... AS SELECT ... WHERE 1 = 0`).
+  - **Status:** Completed
 ---
 
 # Execution Guide
@@ -184,8 +196,9 @@ Navigate into the desired module directory (e.g.,
 `Assignment_08_Midterm_Project/`,   
 `Assignment_09_Subqueries/`,   
 `Assignment_10_Views_and_Transactions/`,   
-`Assignment_11_Stored_Programs/`, or   
-`Assignment_12_Transactions_and_Stored_Procedures/`).
+`Assignment_11_Stored_Programs/`,    
+`Assignment_12_Transactions_and_Stored_Procedures/`, or  
+`Assignment_13_Triggers_and_Events/`).
 
 ### 2. Initialize & Populate the Database
 Open **MySQL Workbench** and execute the setup scripts located in the `scripts/` subfolder in numerical order:
@@ -206,3 +219,4 @@ Compare your live execution output sets against the compiled reports, worksheets
 * For modules involving `UPDATE` or `DELETE` statements (such as Assignment 04), ensure safe updates configuration (`SET sql_safe_updates = 0; / SET sql_safe_updates = 1;`) is managed properly around your transaction blocks.
 * **Implicit Commits with DDL:** In MySQL, Data Definition Language statements (`CREATE VIEW`, `ALTER VIEW`, `DROP VIEW`) trigger an implicit `COMMIT`. Even when `SET autocommit = 0;` is configured, running DDL commands permanently commits prior uncommitted DML transactions, bypassing `ROLLBACK`.
 * **Statement Delimiters in Stored Programs:** When defining procedures, functions, or triggers in MySQL Workbench, always reassign the command delimiter (e.g., `DELIMITER //`) so semicolons inside the `BEGIN ... END` body do not prematurely terminate procedure creation.
+* **Trigger Row Context (`OLD` vs. `NEW`):** In `BEFORE UPDATE` triggers, you can modify incoming column values directly via `SET NEW.column_name = ...`, whereas `AFTER UPDATE` triggers are read-only for the base table and are best suited for writing audit trails to separate history tables.
